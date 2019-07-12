@@ -3,9 +3,39 @@
 $connect = mysqli_connect("arfo8ynm6olw6vpn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306", "jnedqzu7lwxtjyqb", "dt7zlrfkbkb2elqt", "ktz2xy30pbetn2h6");
 if(isset($_POST["name"], $_POST["description"], $_POST["account_number"], $_POST["bank_code"],  $_POST["amount"]))
 {
- $name = mysqli_real_escape_string($connect, $_POST["name"]);
+$datapass= array('account_number' => $_POST["account_number"],'bank_code' =>$_POST["bank_code"]);
+$calle= http_build_query($datapass);
+
+$urle = "https://api.paystack.co/bank/resolve";
+$url1 =$urle."?".$calle;
+// a curl call to send the array to the Paystack api so we can create a new recepient
+$ch1 = curl_init();
+curl_setopt($ch1, CURLOPT_URL, $url1);
+curl_setopt($ch1, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch1, CURLOPT_CUSTOMREQUEST, 'GET');
+
+
+$headers1 = [
+  'Authorization: Bearer sk_test_ee6ffed0718d607063af1be81d911419bd4eb224',
+  'Content-Type: application/json',
+
+];
+curl_setopt($ch1, CURLOPT_HTTPHEADER, $headers1);
+
+$request1 = curl_exec ($ch1);
+
+curl_close ($ch1); 
+  $userDetails = json_decode($request1);
+  $name1 = $userDetails->data->account_name;
+  $account_number1 = $userDetails->data->account_number;
+
+
+
+
+
+ $name = mysqli_real_escape_string($connect, $name1);
  $description = mysqli_real_escape_string($connect, $_POST["description"]);
- $account_number = mysqli_real_escape_string($connect, $_POST["account_number"]);
+ $account_number = mysqli_real_escape_string($connect, $account_number1);
  $bank_code = mysqli_real_escape_string($connect, $_POST["bank_code"]);
  $amount = mysqli_real_escape_string($connect, $_POST["amount"]);
  $amount1 = $amount*100;
