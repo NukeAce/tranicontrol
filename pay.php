@@ -53,7 +53,13 @@ if(isset($_POST["id"]))
 
 			//show the status of the transfer
 			$paid3=json_decode($paid);
+			$status = $paid3->status;
+			if($status==false){
+				die ("<script type='text/javascript'>alert('Insufficient funds');</script>");
+			}
+			else{
 			echo $paid3->message;
+			}
 			// this block runs if there is already a recepient code in the db
 	     
 	   }
@@ -84,6 +90,10 @@ if(isset($_POST["id"]))
 			if (curl_errno($ch2)) {
 			echo 'Error:' . curl_error($ch2);
 			$paid2=json_decode($paid2);
+			$status2 = $paid2->status;
+			if($status2==false){
+				die ("<script type='text/javascript'>alert('Insufficient funds');</script>");
+			}
 			$paid2 = $alert->message;
 			}
 				curl_close ($ch2);

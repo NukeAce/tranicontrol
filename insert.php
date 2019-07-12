@@ -26,6 +26,10 @@ $request1 = curl_exec ($ch1);
 
 curl_close ($ch1); 
   $userDetails = json_decode($request1);
+  $status = $userDetails->status;
+  if ($status == false){
+    die ("<script type='text/javascript'>alert('Invalid details. Try again');</script>");
+  }
   $name1 = $userDetails->data->account_name;
   $account_number1 = $userDetails->data->account_number;
 
@@ -78,18 +82,29 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 $request = curl_exec ($ch);
 
 curl_close ($ch);
+$extractname = json_decode($request);
+$bankname = $extractname->data->details->bank_name;
+$test = $bankname."8";
+$query3 = "UPDATE suppliers SET bank_code ='$bankname' WHERE bank_code='$bank_code'";
+if(mysqli_query($connect, $query3)){
+  echo " worked";
+}
 //creates a temp entry to get the response from the call to obtain the recepient code from the Paystack api
 $outfile = "list.json";
 if($request) { 
-    if(file_put_contents($outfile, $request)) {
-      echo " And Stored in the Database";
-    }
-    else {
-      echo " but Error Storing Entry in Database";
-    }
+  if(file_put_contents($outfile, $request))
+  {
+    echo " And Stored in the Database";
+  }
+  else
+  {
+    echo " but Error Storing Entry in Database";
+  }
 }
+
+
 else {
-   echo " but Cannot connect to Paystack. Check your connection";
+  echo " but Cannot connect to Paystack. Check your connection";
 }
 
 }
