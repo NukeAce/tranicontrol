@@ -46,7 +46,7 @@ while($row = mysqli_fetch_array($result))
  $sub_array[] = '<div class="update" data-id="'.$row["id"].'" data-column="name">' . $row["name"] . '</div>';
  $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="description">' . $row["description"] . '</div>';
  $sub_array[] = '<div class="update" data-id="'.$row["id"].'" data-column="account_number">' . $row["account_number"] . '</div>';
- $sub_array[] = '<div class="update" data-id="'.$row["id"].'" data-column="bank_code">' . "hidden" . '</div>';
+ $sub_array[] = '<div class="update" data-id="'.$row["id"].'" data-column="bank_code">' . $row["bank_code"] . '</div>';
  $sub_array[] = '<div class="update" data-id="'.$row["id"].'" data-column="amount">' . ($row["amount"]*0.01) . '</div>';
  $sub_array[] = '<button type="button" name="delete" class="btn btn-danger btn-xs delete" id="'.$row["id"].'">Delete</button>';
  $sub_array[] = '<button type="button" name="pay" class="btn btn-info btn-xs pay" id="'.$row["id"].'">Pay Once</button>';
