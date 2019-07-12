@@ -103,7 +103,7 @@
      html += '<td><input id="data3" type= "number"/></td>';
      html += '<td align="center"> <select class="form-control" id="data4"> <option value= "058">Guarantee Trust Bank</option> <option value="044">Access Bank</option></select></td>';
      html += '<td><input id="data5" type= "number"></td>';
-     html += '<td><button type="button" name="insert" id="insert" class="btn btn-success btn-xs">Insert</button></td>';
+     html += '<td><button type="button" name="insert" id="insert" class="btn btn-success btn-xs">Save</button></td>';
      html += '<td><button type="button" name="pay" id="pay" class="btn btn-info btn-xs">Pay Once</button></td>';
      html += '</tr>';
      $('#user_data').prepend(html);
