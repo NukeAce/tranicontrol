@@ -1,0 +1,27 @@
+{
+  "status": true,
+  "message": "Transfer recipient created successfully",
+  "data": {
+    "active": true,
+    "createdAt": "2019-02-28T21:31:01.000Z",
+    "currency": "NGN",
+    "description": "BBBA",
+    "domain": "test",
+    "email": null,
+    "id": 1248737,
+    "integration": 337747,
+    "metadata": null,
+    "name": "UMAR, AHMED-TIJANI BABA",
+    "recipient_code": "RCP_vot48gjtzjhtf6z",
+    "type": "nuban",
+    "updatedAt": "2019-07-20T02:40:18.000Z",
+    "is_deleted": false,
+    "details": {
+      "authorization_code": null,
+      "account_number": "0128992840",
+      "account_name": null,
+      "bank_code": "058",
+      "bank_name": "Guaranty Trust Bank"
+    }
+  }
+}

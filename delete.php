@@ -1,6 +1,6 @@
 <?php
 //deletes the data from the database using id
-$connect = mysqli_connect("arfo8ynm6olw6vpn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306", "jnedqzu7lwxtjyqb", "dt7zlrfkbkb2elqt", "ktz2xy30pbetn2h6");
+$connect = mysqli_connect($_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD'], $_ENV['DB_NAME']);
 if(isset($_POST["id"]))
 {
  $query = "DELETE FROM suppliers WHERE id = '".$_POST["id"]."'";

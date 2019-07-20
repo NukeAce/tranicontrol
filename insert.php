@@ -1,6 +1,9 @@
 <?php
+require __DIR__ . '/vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::create(__DIR__);
+$dotenv->load();
 //connects to the remote database and inserts data from the form to the database
-$connect = mysqli_connect("arfo8ynm6olw6vpn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306", "jnedqzu7lwxtjyqb", "dt7zlrfkbkb2elqt", "ktz2xy30pbetn2h6");
+$connect = mysqli_connect($_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD'], $_ENV['DB_NAME']);
 if(isset($_POST["name"], $_POST["description"], $_POST["account_number"], $_POST["bank_code"],  $_POST["amount"]))
 {
 $datapass= array('account_number' => $_POST["account_number"],'bank_code' =>$_POST["bank_code"]);
@@ -16,7 +19,7 @@ curl_setopt($ch1, CURLOPT_CUSTOMREQUEST, 'GET');
 
 
 $headers1 = [
-  'Authorization: Bearer sk_test_ee6ffed0718d607063af1be81d911419bd4eb224',
+  'Authorization: Bearer ' . $_ENV['SECRET_KEY'],
   'Content-Type: application/json',
 
 ];
@@ -73,7 +76,7 @@ curl_setopt($ch, CURLOPT_POSTFIELDS,json_encode($data_array));
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
 $headers = [
-  'Authorization: Bearer sk_test_ee6ffed0718d607063af1be81d911419bd4eb224',
+  'Authorization: Bearer ' . $_ENV['SECRET_KEY'],
   'Content-Type: application/json',
 
 ];
