@@ -1,4 +1,7 @@
 <?php
+require __DIR__ . '/vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::create(__DIR__);
+$dotenv->load();
 //connects to the remote database and inserts data from the form to the database
 $connect = mysqli_connect($_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD'], $_ENV['DB_NAME']);
 if(isset($_POST["name"], $_POST["description"], $_POST["account_number"], $_POST["bank_code"],  $_POST["amount"]))
@@ -51,7 +54,7 @@ $query2 = "SELECT type, name, description, account_number, bank_code, currency F
 //to perform the query on the database
 if(mysqli_query($connect, $query))
 {
-  echo 'Data Inserted';
+  echo 'Supplier Created';
 }
 else{
  echo "Cannot connect to Paystack. Check your connection";
@@ -87,18 +90,18 @@ $bankname = $extractname->data->details->bank_name;
 $test = $bankname."8";
 $query3 = "UPDATE suppliers SET bank_code ='$bankname' WHERE bank_code='$bank_code'";
 if(mysqli_query($connect, $query3)){
-  echo " worked";
+  echo " ";
 }
 //creates a temp entry to get the response from the call to obtain the recepient code from the Paystack api
 $outfile = "list.json";
 if($request) { 
   if(file_put_contents($outfile, $request))
   {
-    echo " And Stored in the Database";
+    echo "And Saved";
   }
   else
   {
-    echo " but Error Storing Entry in Database";
+    echo " but Error Saving";
   }
 }
 

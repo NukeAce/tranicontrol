@@ -1,4 +1,7 @@
 <?php
+require __DIR__ . '/vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::create(__DIR__);
+$dotenv->load();
 error_reporting(0);
 //connects to the database and 
 $connect = mysqli_connect($_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD'], $_ENV['DB_NAME']);
@@ -19,7 +22,7 @@ if(isset($_POST["id"]))
 			$query = "UPDATE suppliers SET recipient ='".$code."' WHERE id = '".$_POST["id"]."'";
 
 			if(mysqli_query($connect, $query)){
-			  echo 'Recipient Verified and ';
+			  echo 'Supplier verified and ';
 			}
 			 //next a new query selects the required parameters for the curl call
 			$query2 = "SELECT source, amount, recipient FROM suppliers WHERE id = '".$_POST["id"]."'";
