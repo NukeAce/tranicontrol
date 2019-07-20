@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/vendor/autoload.php';
+
 $dotenv = Dotenv\Dotenv::create(__DIR__);
 $dotenv->load();
 //connects to the remote database and inserts data from the form to the database
