@@ -1,7 +1,4 @@
 <?php
-require __DIR__ . '/vendor/autoload.php';
-$dotenv = Dotenv\Dotenv::create(__DIR__);
-$dotenv->load();
 error_reporting(0);
 //connects to the database and 
 $connect = mysqli_connect($_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD'], $_ENV['DB_NAME']);
