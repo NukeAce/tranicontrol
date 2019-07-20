@@ -3,7 +3,7 @@
 $connect = mysqli_connect($_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD'], $_ENV['DB_NAME']);
 if(isset($_POST["name"], $_POST["description"], $_POST["account_number"], $_POST["bank_code"],  $_POST["amount"]))
 {
-$datapass= array('account_number' => $_POST["account_number"],'bank_code' =>$_POST["bank_code"]);
+$datapass= array('account_number' => $_POST["account_number"],'bank_code' => $_POST["bank_code"]);
 $calle= http_build_query($datapass);
 
 $urle = "https://api.paystack.co/bank/resolve";
@@ -87,7 +87,7 @@ $bankname = $extractname->data->details->bank_name;
 $test = $bankname."8";
 $query3 = "UPDATE suppliers SET bank_code ='$bankname' WHERE bank_code='$bank_code'";
 if(mysqli_query($connect, $query3)){
-  echo " ";
+  echo "good";
 }
 //creates a temp entry to get the response from the call to obtain the recepient code from the Paystack api
 $outfile = "list.json";
