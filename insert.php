@@ -87,7 +87,7 @@ $bankname = $extractname->data->details->bank_name;
 $test = $bankname."8";
 $query3 = "UPDATE suppliers SET bank_code ='$bankname' WHERE bank_code='$bank_code'";
 if(mysqli_query($connect, $query3)){
-  echo "good";
+  echo " ";
 }
 //creates a temp entry to get the response from the call to obtain the recepient code from the Paystack api
 $outfile = "list.json";
