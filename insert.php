@@ -1,4 +1,7 @@
 <?php
+require __DIR__ . '/vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::create(__DIR__);
+$dotenv->load();
 //connects to the remote database and inserts data from the form to the database
 $connect = mysqli_connect($_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD'], $_ENV['DB_NAME']);
 if(isset($_POST["name"], $_POST["description"], $_POST["account_number"], $_POST["bank_code"],  $_POST["amount"]))
