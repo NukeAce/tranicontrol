@@ -1,6 +1,6 @@
 <?php
 //connects to the remote database and inserts data from the form to the database
-$connect = mysqli_connect("arfo8ynm6olw6vpn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306", "jnedqzu7lwxtjyqb", "dt7zlrfkbkb2elqt", "ktz2xy30pbetn2h6");
+$connect = mysqli_connect($_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD'], $_ENV['DB_NAME']);
 if(isset($_POST["name"], $_POST["description"], $_POST["account_number"], $_POST["bank_code"],  $_POST["amount"]))
 {
 $datapass= array('account_number' => $_POST["account_number"],'bank_code' =>$_POST["bank_code"]);
@@ -16,7 +16,7 @@ curl_setopt($ch1, CURLOPT_CUSTOMREQUEST, 'GET');
 
 
 $headers1 = [
-  'Authorization: Bearer sk_test_ee6ffed0718d607063af1be81d911419bd4eb224',
+  'Authorization: Bearer ' . $_ENV['SECRET_KEY'],
   'Content-Type: application/json',
 
 ];
@@ -51,7 +51,7 @@ $query2 = "SELECT type, name, description, account_number, bank_code, currency F
 //to perform the query on the database
 if(mysqli_query($connect, $query))
 {
-  echo 'Data Inserted';
+  echo 'Supplier Created';
 }
 else{
  echo "Cannot connect to Paystack. Check your connection";
@@ -73,7 +73,7 @@ curl_setopt($ch, CURLOPT_POSTFIELDS,json_encode($data_array));
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
 $headers = [
-  'Authorization: Bearer sk_test_ee6ffed0718d607063af1be81d911419bd4eb224',
+  'Authorization: Bearer ' . $_ENV['SECRET_KEY'],
   'Content-Type: application/json',
 
 ];
@@ -87,18 +87,18 @@ $bankname = $extractname->data->details->bank_name;
 $test = $bankname."8";
 $query3 = "UPDATE suppliers SET bank_code ='$bankname' WHERE bank_code='$bank_code'";
 if(mysqli_query($connect, $query3)){
-  echo " worked";
+  echo " ";
 }
 //creates a temp entry to get the response from the call to obtain the recepient code from the Paystack api
 $outfile = "list.json";
 if($request) { 
   if(file_put_contents($outfile, $request))
   {
-    echo " And Stored in the Database";
+    echo "And Saved";
   }
   else
   {
-    echo " but Error Storing Entry in Database";
+    echo " but Error Saving";
   }
 }
 
