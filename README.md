@@ -1,5 +1,8 @@
 # trani
+
+# THIS IS THE LOCAL MACHINE VERSION KINDLY REFER TO TRANI CONTROL FOR DEPLOYED VERSION
 a simple transfer app. Powered by Paystack.
+
 
 Version history:
 
